@@ -40,25 +40,26 @@ $(document).on('click', '#btn_add', function(e){
 
 //Supprimer Utilisateurs
 function supUsers() {
-    $(document).on("click", "#btn_del", function(e) {
+    $(document).on("click" , "#btn_del", function(e) {
         e.preventDefault();
+        console.log('premier palier');
 
         if (window.confirm("Voulez-vous supprimer cet Utilisateurs ?")) {
             var id = $(this).attr("value");
             console.log(id);
 
-            // $.ajax({
-            //     url:"delete_user.php",
-            //     type:"post",
-            //     data:{
-            //         id:id
-            //     },
-            //     success:function(data){
-            //         $("#msg_delete").html(data).delay(700).slideDown(700);
-            //         $("#msg_delete").delay(700).slideUp(700);
-            //         affUsers();
-            //     }
-            // });
+            $.ajax({
+                url:"delete_user.php",
+                type:"post",
+                data:{
+                    id:id
+                },
+                success:function(data){
+                    $("#msg_delete").html(data).delay(700).slideDown(700);
+                    $("#msg_delete").delay(700).slideUp(700);
+                    affUsers();
+                }
+            });
         } else {
             return false;
         }
