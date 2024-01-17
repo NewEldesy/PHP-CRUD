@@ -13,7 +13,7 @@ $rows = $pdo->affUsers();
             <tr>
                <th>#</th>
                <th>Nom (s)</th>
-               <th>Preom (s)</th>
+               <th>Prenom (s)</th>
                <th>Email</th>
                <th>Options</th>
             </tr>
