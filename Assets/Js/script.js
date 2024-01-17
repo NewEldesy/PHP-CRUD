@@ -94,7 +94,7 @@ function majUsers() {
     $(document).on("click" , "#btn_maj", function(e) {
         e.preventDefault();
 
-        var id = $("#id").val();
+        var id = $("#id_user").val();
         var nom = $("#nom").val();
         var prenom =$("#prenom").val();
         var email =$("#email").val();
