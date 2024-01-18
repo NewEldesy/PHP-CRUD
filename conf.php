@@ -1,5 +1,4 @@
 <?php
-
 class Config_db{
 
     private $pdo;
@@ -19,45 +18,41 @@ class Config_db{
 
     // Fonction qui fait les enregistrements des départements
     function insertUsers(){
-        if (isset($_POST['btn_add'])) {
-            if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])){
-                if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email'])) {
-                    $nom = $_POST['nom'];
-                    $prenom = $_POST['prenom'];
-                    $email = $_POST['email'];
+      if (isset($_POST['btn_add'])) {
+          if (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['email'])){
+            if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['email'])) {
+                $nom = $_POST['nom'];
+                $prenom = $_POST['prenom'];
+                $email = $_POST['email'];
                 
-                    $query = "INSERT INTO users(nom, prenom, email) VALUES('$nom', '$prenom', '$email')";
-                    $sql = $this->pdo->prepare($query);
-                    if ($sql->execute()){
-                        echo '<div class="alert alert-success" role="alert">
-                                Utilisateur enregistré avec succès
-                            </div>';
-                    } else {
-                        echo '<div class="alert alert-danger" role="alert">
-                                Enregistrement échoué
-                            </div>';
-                    }
+                $query = "INSERT INTO users(nom, prenom, email) VALUES('$nom', '$prenom', '$email')";
+                $query = 'INSERT INTO users(nom, prenom, email) VALUES("$nom", "$prenom", "$email")';
+                $sql = $this->pdo->prepare($query);
+                if ($sql->execute()){
+                  echo '<div class="alert alert-success" role="alert">
+                  Utilisateur enregistré avec succès</div>';
                 } else {
-                    echo '<div class="alert alert-warning" role="alert">
-                            Attention champ est vide</div>';
+                  echo '<div class="alert alert-danger" role="alert">
+                    Enregistrement échoué</div>';
                 }
+              } else {
+                echo '<div class="alert alert-warning" role="alert">Attention champ est vide</div>';
             }
-        }
+          }
+      }
     }
 
     //Fonction qui affiche les utilisateurs
-    public function affUsers()
-    {
-       $data = null;
+    public function affUsers(){
+      $data = null;
 
-       $query = "SELECT * FROM users";
-       $stmt = $this->pdo->prepare($query);
-       $stmt->execute(); 
+      $query = "SELECT * FROM users";
+      $stmt = $this->pdo->prepare($query);
+      $stmt->execute(); 
 
-       $data = $stmt->fetchAll();
+      $data = $stmt->fetchAll();
 
-       return $data;
-
+      return $data;
     }
 
     //Fonction qui supprime utilisateurs
